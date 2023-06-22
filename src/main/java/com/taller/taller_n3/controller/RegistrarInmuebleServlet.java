@@ -32,10 +32,10 @@ public class RegistrarInmuebleServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
         RequestDispatcher respuesta = req.getRequestDispatcher("/registroInmuebleErroneo.jsp");
-        if(req.getParameter("id_inmueble").length()!=0 && req.getParameter("tipo_contruccion").length()!=0 && req.getParameter("ubicacion").length()!=0 &&
+        if(req.getParameter("id_inmueble").length()!=0 && req.getParameter("tipo_construccion").length()!=0 && req.getParameter("ubicacion").length()!=0 &&
                 req.getParameter("precio").length()!=0 && req.getParameter("ciudad").length()!=0){
             int id_inmueble = Integer.parseInt(req.getParameter("id_inmueble"));
-            String tipoConstruccion = req.getParameter("tipo_contruccion");
+            String tipoConstruccion = req.getParameter("tipo_construccion");
             int precio = Integer.parseInt(req.getParameter("precio"));
             String ubicacion = req.getParameter("ubicacion");
             String ciudad = req.getParameter("ciudad");

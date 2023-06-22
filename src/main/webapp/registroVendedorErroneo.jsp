@@ -37,7 +37,7 @@
                 <option value ="0">Estado civil</option>
                 <option value="Soltero">Soltero</option>
                 <option value="Casado">Casado</option>
-                <option value="Divorsiado">Divorsiado</option>
+                <option value="Divorciado">Divorciado</option>
             </select>
         </label>
     </div>

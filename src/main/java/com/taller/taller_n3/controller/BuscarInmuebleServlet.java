@@ -34,7 +34,7 @@ public class BuscarInmuebleServlet extends HttpServlet {
             try {
                 if(buscarInmueble(ciudad)!=null){
                     req.setAttribute("inmueble",buscarInmueble(ciudad));
-                    respuesta = req.getRequestDispatcher("/mostrarInmueble.jsp");
+                    respuesta = req.getRequestDispatcher("/mostrarInmuebles.jsp");
                 }
                 else{
                     respuesta = req.getRequestDispatcher("/busquedaInmuebleErroneo.jsp");
@@ -47,9 +47,9 @@ public class BuscarInmuebleServlet extends HttpServlet {
     }
     private List buscarInmueble(String ciudad) throws ClassNotFoundException {
         DSLContext query= DBGenerator.conectarBD("Inmobiliaria_BD");
-        List articulos = InmuebleDAO.obtenerInmueble(query,"ciudad",ciudad);
-        if(articulos.size()!=0){
-            return articulos;
+        List inmuebles = InmuebleDAO.obtenerInmueble(query,"ciudad",ciudad);
+        if(inmuebles.size()!=0){
+            return inmuebles;
         }else {
             return null;
         }

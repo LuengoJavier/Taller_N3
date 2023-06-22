@@ -34,8 +34,8 @@
         <input type="text" id = "ciudad" name="ciudad" required>
     </div>
     <div class="form-group">
-        <label for= "direccion">Direccion:</label>
-        <input type="text" id = "direccion" name="direccion" required>
+        <label for= "ubicacion">Direccion:</label>
+        <input type="text" id = "ubicacion" name="ubicacion" required>
     </div>
     <div class="form-group">
         <label for= "precio">Valor:</label>

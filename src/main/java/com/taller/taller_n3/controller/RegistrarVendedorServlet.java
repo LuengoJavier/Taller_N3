@@ -36,14 +36,14 @@ public class RegistrarVendedorServlet extends HttpServlet {
         && req.getParameter("direccion").length()==0){
             String nombre = req.getParameter("nombre");
             String titulo = req.getParameter("titulo");
-            String ubicacion = req.getParameter("ubicacion");
+            String ubicacion = req.getParameter("direccion");
             String rut = req.getParameter("rut");
             String estadoCivil = req.getParameter("estado_civil");
             Vendedor vendedor = new Vendedor(nombre,rut,ubicacion,titulo,estadoCivil);
             try {
                 if(agregarVendedor(vendedor)){
                     req.setAttribute("vendedor",vendedor);
-                    respuesta = req.getRequestDispatcher("/registroExitoso.jsp");
+                    respuesta = req.getRequestDispatcher("/registroVendedorExitoso.jsp");
                 }
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
