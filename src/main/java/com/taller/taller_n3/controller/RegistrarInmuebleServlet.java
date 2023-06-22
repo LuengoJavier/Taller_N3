@@ -1,6 +1,7 @@
 package com.taller.taller_n3.controller;
 
 import com.taller.taller_n3.model.data.DBGenerator;
+import com.taller.taller_n3.model.data.dao.InmuebleDAO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,10 +9,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.jooq.DSLContext;
-import org.jooq.impl.DSL;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.List;
 
 @WebServlet(name = "registrarInmuebleServlet", value = "/registroInmueble")
@@ -41,7 +40,7 @@ public class RegistrarInmuebleServlet extends HttpServlet {
             int precio = Integer.parseInt(req.getParameter("precio"));
             String ubicacion = req.getParameter("ubicacion");
             try {
-                if(agregarInmobiliaria(id_inmueble,tipoConstruccion,ubicacion,precio)){
+                if(agregarInmueble(id_inmueble,tipoConstruccion,ubicacion,precio)){
                     req.setAttribute("inmueble",agregarInmueble(id_inmueble,tipoConstruccion,ubicacion,precio));
                     respuesta = req.getRequestDispatcher("/registroLibroExitoso.jsp");
                 }
@@ -49,10 +48,9 @@ public class RegistrarInmuebleServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        req.setAttribute("categorias",obtenerCategorias());
         respuesta.forward(req,resp);
     }
-    private boolean agregarLibro(int id_inmueble, String tipoConstruccion, String ubicacion, int precio) throws ClassNotFoundException {
+    private boolean agregarInmueble(int id_inmueble, String tipoConstruccion, String ubicacion, int precio) throws ClassNotFoundException {
         DSLContext query= DBGenerator.conectarBD("Inmobiliaria_BD");
         List inmuebles = InmuebleDAO.obtenerInmueble(query,"id_inmueble", id_inmueble);
         if(inmuebles.size()!=0){
@@ -62,10 +60,5 @@ public class RegistrarInmuebleServlet extends HttpServlet {
             InmuebleDAO.registarInmueble(query,id_inmueble,tipoConstruccion,ubicacion,precio);
             return true;
         }
-    }
-    public List<Categoria> obtenerCategorias(){
-        Connection connection= DBConnector.connection("BibliotecaDB","root","");
-        DSLContext query= DSL.using(connection);
-        return CategoriaDAO.obtenerCategorias(query);
     }
 }
