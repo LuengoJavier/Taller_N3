@@ -8,9 +8,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Buscar Inmueble</title>
 </head>
 <body>
-
+<h1>Buscar Inmbueble por ciudad</h1>
+<form action="buscarInmueble" method="post">
+    <div class="form-group">
+        <label for= "ciudad">Ciudad:</label>
+        <input type="text" id = "ciudad" name="ciudad" required>
+    </div>
+    <input type="submit" value="Buscar Articulo" class="boton">
+</form>
 </body>
 </html>

@@ -42,6 +42,8 @@
         </label>
     </div>
     <input type="submit" value="Registrar" class="boton">
+    <br>
+    <a href="index.jsp" class="button-link">Volver al menú</a>
 </form>
 </body>
 </html>

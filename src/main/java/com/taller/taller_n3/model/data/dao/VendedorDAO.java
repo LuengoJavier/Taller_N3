@@ -16,9 +16,9 @@ import static org.jooq.impl.DSL.table;
 public class VendedorDAO {
     public static void registarVendedor(DSLContext query, Vendedor vendedor){
         Table tablaCliente= table(name("Vendedor"));
-        Field[] columnas = tablaCliente.fields("rut","nombre","titulo","direccion","estado_civil");
+        Field[] columnas = tablaCliente.fields("rut","nombre","direccion","titulo","estado_civil");
         query.insertInto(tablaCliente, columnas[0], columnas[1],columnas[2],columnas[3],columnas[4])
-                .values(vendedor.getRut(),vendedor.getNombre(),vendedor.getTitulo(),vendedor.getDireccion(),vendedor.getEstadoCvil())
+                .values(vendedor.getRut(),vendedor.getNombre(),vendedor.getDireccion(),vendedor.getTitulo(),vendedor.getEstadoCvil())
                 .execute();
     }
     public static List obtenerVendedor(DSLContext query, String columnaTabla, Object dato){
@@ -34,6 +34,7 @@ public class VendedorDAO {
             String direccion = (String) resultados.getValue(fila,"direccion");
             String estadoCivil = (String) resultados.getValue(fila,"estado_civil");
             Vendedor vendedor = new Vendedor(nombre,rut,direccion,titulo,estadoCivil);
+            vendedores.add(vendedor);
         }
         return vendedores;
     }

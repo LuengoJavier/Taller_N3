@@ -13,9 +13,9 @@
 </head>
 <body>
 <h1>Registro Inmueble</h1>
-<form action="registroInmueble.jsp" method="post">
+<form action="registroInmueble" method="post">
     <div class="form-group">
-        <label for="id_inmueble">Codigo Categoria:</label>
+        <label for="id_inmueble">Codigo inmueble:</label>
         <input type="text" id="id_inmueble" name="id_inmueble" required>
     </div>
     <div class="form-group">
@@ -29,6 +29,10 @@
         </label>
     </div>
     <div class="form-group">
+        <label for= "ciudad">Ciudad:</label>
+        <input type="text" id = "ciudad" name="ciudad" required>
+    </div>
+    <div class="form-group">
         <label for= "direccion">Direccion:</label>
         <input type="text" id = "direccion" name="direccion" required>
     </div>
@@ -37,6 +41,8 @@
         <input type="text" id = "precio" name="precio" required>
     </div>
     <input type="submit" value="Registrar" class="boton">
+    <br>
+    <a href="index.jsp" class="button-link">Volver al menú</a>
 </form>
 </body>
 </html>

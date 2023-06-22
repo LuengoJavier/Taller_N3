@@ -32,17 +32,17 @@ public class RegistrarInmuebleServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
         RequestDispatcher respuesta = req.getRequestDispatcher("/registroInmuebleErroneo.jsp");
-        if(req.getParameter("id_inmueble").length()!=0 &&
-                req.getParameter("tipo_contruccion").length()!=0 && req.getParameter("ubicacion").length()!=0 &&
-                req.getParameter("precio").length()!=0){
+        if(req.getParameter("id_inmueble").length()!=0 && req.getParameter("tipo_contruccion").length()!=0 && req.getParameter("ubicacion").length()!=0 &&
+                req.getParameter("precio").length()!=0 && req.getParameter("ciudad").length()!=0){
             int id_inmueble = Integer.parseInt(req.getParameter("id_inmueble"));
             String tipoConstruccion = req.getParameter("tipo_contruccion");
             int precio = Integer.parseInt(req.getParameter("precio"));
             String ubicacion = req.getParameter("ubicacion");
+            String ciudad = req.getParameter("ciudad");
             try {
-                if(agregarInmueble(id_inmueble,tipoConstruccion,ubicacion,precio)){
-                    req.setAttribute("inmueble",agregarInmueble(id_inmueble,tipoConstruccion,ubicacion,precio));
-                    respuesta = req.getRequestDispatcher("/registroLibroExitoso.jsp");
+                if(agregarInmueble(id_inmueble,tipoConstruccion,ciudad,ubicacion,precio)){
+                    req.setAttribute("inmueble",agregarInmueble(id_inmueble,tipoConstruccion,ciudad,ubicacion,precio));
+                    respuesta = req.getRequestDispatcher("/registroExitoso.jsp");
                 }
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -50,14 +50,14 @@ public class RegistrarInmuebleServlet extends HttpServlet {
         }
         respuesta.forward(req,resp);
     }
-    private boolean agregarInmueble(int id_inmueble, String tipoConstruccion, String ubicacion, int precio) throws ClassNotFoundException {
+    private boolean agregarInmueble(int id_inmueble, String tipoConstruccion,String ciudad, String ubicacion, int precio) throws ClassNotFoundException {
         DSLContext query= DBGenerator.conectarBD("Inmobiliaria_BD");
         List inmuebles = InmuebleDAO.obtenerInmueble(query,"id_inmueble", id_inmueble);
         if(inmuebles.size()!=0){
             return false;
         }
         else{
-            InmuebleDAO.registarInmueble(query,id_inmueble,tipoConstruccion,ubicacion,precio);
+            InmuebleDAO.registarInmueble(query,id_inmueble,tipoConstruccion,ciudad,ubicacion,precio);
             return true;
         }
     }
